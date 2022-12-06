@@ -121,7 +121,7 @@ export default function Home() {
   ];
 
   return (
-    <div className="w-[90%] mx-auto text-dark-02 font-urban text-fs-30 font-bold">
+    <div className="w-[90%] md:w-[80%] lg:w-[70%] mx-auto text-dark-02 font-urban text-fs-30 font-bold">
       <header>
         <Header />
       </header>
@@ -130,24 +130,24 @@ export default function Home() {
           content={
             <>
               <Section
-                className="py-12"
-                header="Choose payment"
-                content={
-                  <ul className="grid gap-5">
-                    {checkboxItems.map((item, index) => (
-                      <li key={index}>{item(active === index, index)}</li>
-                    ))}
-                  </ul>
-                }
-              />
-
-              <Section
                 content={
                   <form
                     onSubmit={(e) => {
                       e.preventDefault();
                     }}
+                    className="lg:grid lg:auto-cols-auto lg:auto-rows-auto lg:grid-flow-dense lg:gap-x-10"
                   >
+                    <Section
+                      className="py-8"
+                      header="Choose payment"
+                      content={
+                        <ul className="grid gap-5">
+                          {checkboxItems.map((item, index) => (
+                            <li key={index}>{item(active === index, index)}</li>
+                          ))}
+                        </ul>
+                      }
+                    />
                     <Section
                       className="py-8"
                       header="Payment details"
@@ -168,6 +168,7 @@ export default function Home() {
                     <Section
                       className="py-8"
                       header="Delivery"
+                      edit={true}
                       content={
                         <div className="text-fs-40 font-normal leading-lh-04 text-dark-01">
                           <p className="mb-3">Pristia Candra Arum</p>
@@ -184,6 +185,7 @@ export default function Home() {
                     <Section
                       className="py-8"
                       header="Shipping"
+                      edit={true}
                       content={
                         <div className="text-fs-40 font-normal leading-lh-04 text-dark-01">
                           <p className="mb-3">Pristia Candra Arum</p>
@@ -200,6 +202,7 @@ export default function Home() {
                     <Section
                       className="py-8"
                       header="Billing"
+                      edit={true}
                       content={
                         <div className="text-fs-40 font-normal leading-lh-04 text-dark-01">
                           <p className="mb-3">Pristia Candra Arum</p>
@@ -210,6 +213,74 @@ export default function Home() {
                           <p className="mb-3">pristia@gmail.com</p>
                           <p>0809210301002</p>
                         </div>
+                      }
+                    />
+
+                    <Section
+                      className="py-8 col-start-2"
+                      header="Order summary"
+                      content={
+                        <>
+                          <div className="text-fs-40 font-normal leading-lh-04 text-dark-01">
+                            <div className="w-full text-fs-30 leading-lh-05">
+                              <div className="flex items-center justify-between mb-5">
+                                <p className="">Subtotal</p>
+                                <p className=" text-dark-02 font-bold">
+                                  $119,32
+                                </p>
+                              </div>
+                              <div className="flex items-center justify-between mb-5">
+                                <p>Duties & Tax</p>
+                                <p className="text-dark-02 font-bold">$90</p>
+                              </div>
+                              <div className="flex items-center justify-between mb-5">
+                                <p>Delivery</p>
+                                <p className=" text-dark-02 font-bold">$10</p>
+                              </div>
+                              <div className="flex items-center justify-between mb-5">
+                                <p className="text-fs-40 text-dark-02 font-bold">
+                                  Total
+                                </p>
+                                <p className=" text-fs-40 text-dark-02 font-bold">
+                                  $219,32
+                                </p>
+                              </div>
+                            </div>
+                            <div className="flex items-center gap-5 py-5 text-dark-02 font-bold">
+                              <div className="w-[120px] h-[133px] bg-dark-01 shadow-lg"></div>
+                              <div className="flex flex-col justify-between">
+                                <h3>
+                                  Liverpool F.C. 21/22 Home Kit Goalkeeper
+                                </h3>
+                                <p className="text-dark-01 font-normal">
+                                  Football . Size L . QTY 1
+                                </p>
+                                <p>$59,66</p>
+                              </div>
+                            </div>
+                            <div className="flex items-center gap-5 py-5 text-dark-02 font-bold">
+                              <div className="w-[120px] h-[133px] bg-dark-01 shadow-lg"></div>
+                              <div className="flex flex-col justify-between">
+                                <h3>
+                                  Liverpool F.C. 21/22 Home Kit Goalkeeper
+                                </h3>
+                                <p className="text-dark-01 font-normal">
+                                  Football . Size L . QTY 1
+                                </p>
+                                <p>$59,66</p>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div className="flex gap-5 pb-12 self-start py-5">
+                            <button className="py-5 px-10 shadow-lg">
+                              Back
+                            </button>
+                            <button className="py-5 px-10 bg-dark-02 text-white">
+                              Place Order
+                            </button>
+                          </div>
+                        </>
                       }
                     />
                   </form>

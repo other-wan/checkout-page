@@ -10,6 +10,7 @@ module.exports = {
       fontSize: {
         "fs-10": "0.75rem",
         "fs-20": "0.875rem",
+        "fs-30": "1.00rem",
         "fs-40": "1.125rem",
       },
 
@@ -18,6 +19,7 @@ module.exports = {
         "lh-02": "1.225rem",
         "lh-03": "1.3125rem",
         "lh-04": "1.75rem",
+        "lh-05": "1.25rem",
       },
 
       colors: {
