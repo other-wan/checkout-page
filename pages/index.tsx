@@ -6,6 +6,7 @@ import Card from "src/components/icons/Card";
 import Check from "src/components/icons/Check";
 import Header from "src/components/views/header";
 import Section from "src/layouts/Section";
+import { PaystackButton } from "react-paystack";
 
 export default function Home() {
   const [active, setActive] = useState(0);
@@ -19,15 +20,15 @@ export default function Home() {
   ) => (
     <div
       className={classNames(
-        "flex items-center justify-between relative py-5 px-4\
-        border border-transparent shadow-lg",
+        "flex items-center justify-between relative\
+        border border-transparent shadow-lg px-4",
         { ["!border-dark-02"]: active }
       )}
     >
       <label
         htmlFor={inputId}
         className="flex-1 flex items-center gap-3 text-fs-20 
-        font-semibold leading-lh-03"
+        font-semibold leading-lh-03 py-5"
       >
         {label}
       </label>
@@ -120,6 +121,15 @@ export default function Home() {
     },
   ];
 
+  const componentProps = {
+    email: "Tahir@example.com",
+    amount: 21930,
+    publicKey: "pk_test_7855c4793eb080701d744733022b21ca13370b90",
+    text: "Place Order",
+    onSuccess: () => console.log("Payment Sucessfull"),
+    onClose: () => console.log("Order cancelled"),
+  };
+
   return (
     <div className="w-[90%] md:w-[80%] lg:w-[70%] mx-auto text-dark-02 font-urban text-fs-30 font-bold">
       <header>
@@ -128,165 +138,149 @@ export default function Home() {
       <main className="">
         <Section
           content={
-            <>
+            <form
+              onSubmit={(e) => {
+                e.preventDefault();
+              }}
+              className="lg:grid lg:auto-cols-auto lg:auto-rows-auto lg:grid-flow-dense lg:gap-x-10"
+            >
               <Section
+                className="py-8"
+                header="Choose payment"
                 content={
-                  <form
-                    onSubmit={(e) => {
-                      e.preventDefault();
-                    }}
-                    className="lg:grid lg:auto-cols-auto lg:auto-rows-auto lg:grid-flow-dense lg:gap-x-10"
-                  >
-                    <Section
-                      className="py-8"
-                      header="Choose payment"
-                      content={
-                        <ul className="grid gap-5">
-                          {checkboxItems.map((item, index) => (
-                            <li key={index}>{item(active === index, index)}</li>
-                          ))}
-                        </ul>
-                      }
-                    />
-                    <Section
-                      className="py-8"
-                      header="Payment details"
-                      content={
-                        <ul className="grid auto-cols-auto auto-rows-auto gap-4">
-                          {inputItems.map((item, index) => (
-                            <li
-                              className={item.className}
-                              key={item.className + index}
-                            >
-                              {item.content}
-                            </li>
-                          ))}
-                        </ul>
-                      }
-                    />
-
-                    <Section
-                      className="py-8"
-                      header="Delivery"
-                      edit={true}
-                      content={
-                        <div className="text-fs-40 font-normal leading-lh-04 text-dark-01">
-                          <p className="mb-3">Pristia Candra Arum</p>
-                          <p className="mb-3">
-                            Banyumanik Street no 14, Central Java Semarang
-                            Indonesia
-                          </p>
-                          <p className="mb-3">pristia@gmail.com</p>
-                          <p>0809210301002</p>
-                        </div>
-                      }
-                    />
-
-                    <Section
-                      className="py-8"
-                      header="Shipping"
-                      edit={true}
-                      content={
-                        <div className="text-fs-40 font-normal leading-lh-04 text-dark-01">
-                          <p className="mb-3">Pristia Candra Arum</p>
-                          <p className="mb-3">
-                            Banyumanik Street no 14, Central Java Semarang
-                            Indonesia
-                          </p>
-                          <p className="mb-3">pristia@gmail.com</p>
-                          <p>0809210301002</p>
-                        </div>
-                      }
-                    />
-
-                    <Section
-                      className="py-8"
-                      header="Billing"
-                      edit={true}
-                      content={
-                        <div className="text-fs-40 font-normal leading-lh-04 text-dark-01">
-                          <p className="mb-3">Pristia Candra Arum</p>
-                          <p className="mb-3">
-                            Banyumanik Street no 14, Central Java Semarang
-                            Indonesia
-                          </p>
-                          <p className="mb-3">pristia@gmail.com</p>
-                          <p>0809210301002</p>
-                        </div>
-                      }
-                    />
-
-                    <Section
-                      className="py-8 col-start-2"
-                      header="Order summary"
-                      content={
-                        <>
-                          <div className="text-fs-40 font-normal leading-lh-04 text-dark-01">
-                            <div className="w-full text-fs-30 leading-lh-05">
-                              <div className="flex items-center justify-between mb-5">
-                                <p className="">Subtotal</p>
-                                <p className=" text-dark-02 font-bold">
-                                  $119,32
-                                </p>
-                              </div>
-                              <div className="flex items-center justify-between mb-5">
-                                <p>Duties & Tax</p>
-                                <p className="text-dark-02 font-bold">$90</p>
-                              </div>
-                              <div className="flex items-center justify-between mb-5">
-                                <p>Delivery</p>
-                                <p className=" text-dark-02 font-bold">$10</p>
-                              </div>
-                              <div className="flex items-center justify-between mb-5">
-                                <p className="text-fs-40 text-dark-02 font-bold">
-                                  Total
-                                </p>
-                                <p className=" text-fs-40 text-dark-02 font-bold">
-                                  $219,32
-                                </p>
-                              </div>
-                            </div>
-                            <div className="flex items-center gap-5 py-5 text-dark-02 font-bold">
-                              <div className="w-[120px] h-[133px] bg-dark-01 shadow-lg"></div>
-                              <div className="flex flex-col justify-between">
-                                <h3>
-                                  Liverpool F.C. 21/22 Home Kit Goalkeeper
-                                </h3>
-                                <p className="text-dark-01 font-normal">
-                                  Football . Size L . QTY 1
-                                </p>
-                                <p>$59,66</p>
-                              </div>
-                            </div>
-                            <div className="flex items-center gap-5 py-5 text-dark-02 font-bold">
-                              <div className="w-[120px] h-[133px] bg-dark-01 shadow-lg"></div>
-                              <div className="flex flex-col justify-between">
-                                <h3>
-                                  Liverpool F.C. 21/22 Home Kit Goalkeeper
-                                </h3>
-                                <p className="text-dark-01 font-normal">
-                                  Football . Size L . QTY 1
-                                </p>
-                                <p>$59,66</p>
-                              </div>
-                            </div>
-                          </div>
-
-                          <div className="flex gap-5 pb-12 self-start py-5">
-                            <button className="py-5 px-10 shadow-lg">
-                              Back
-                            </button>
-                            <button className="py-5 px-10 bg-dark-02 text-white">
-                              Place Order
-                            </button>
-                          </div>
-                        </>
-                      }
-                    />
-                  </form>
+                  <ul className="grid gap-5">
+                    {checkboxItems.map((item, index) => (
+                      <li key={index}>{item(active === index, index)}</li>
+                    ))}
+                  </ul>
                 }
               />
-            </>
+              <Section
+                className="py-8"
+                header="Payment details"
+                content={
+                  <ul className="grid auto-cols-auto auto-rows-auto gap-4">
+                    {inputItems.map((item, index) => (
+                      <li
+                        className={item.className}
+                        key={item.className + index}
+                      >
+                        {item.content}
+                      </li>
+                    ))}
+                  </ul>
+                }
+              />
+
+              <Section
+                className="py-8"
+                header="Delivery"
+                edit={true}
+                content={
+                  <div className="text-fs-40 font-normal leading-lh-04 text-dark-01">
+                    <p className="mb-3">Pristia Candra Arum</p>
+                    <p className="mb-3">
+                      Banyumanik Street no 14, Central Java Semarang Indonesia
+                    </p>
+                    <p className="mb-3">pristia@gmail.com</p>
+                    <p>0809210301002</p>
+                  </div>
+                }
+              />
+
+              <Section
+                className="py-8"
+                header="Shipping"
+                edit={true}
+                content={
+                  <div className="text-fs-40 font-normal leading-lh-04 text-dark-01">
+                    <p className="mb-3">Pristia Candra Arum</p>
+                    <p className="mb-3">
+                      Banyumanik Street no 14, Central Java Semarang Indonesia
+                    </p>
+                    <p className="mb-3">pristia@gmail.com</p>
+                    <p>0809210301002</p>
+                  </div>
+                }
+              />
+
+              <Section
+                className="py-8"
+                header="Billing"
+                edit={true}
+                content={
+                  <div className="text-fs-40 font-normal leading-lh-04 text-dark-01">
+                    <p className="mb-3">Pristia Candra Arum</p>
+                    <p className="mb-3">
+                      Banyumanik Street no 14, Central Java Semarang Indonesia
+                    </p>
+                    <p className="mb-3">pristia@gmail.com</p>
+                    <p>0809210301002</p>
+                  </div>
+                }
+              />
+
+              <Section
+                className="py-8 col-start-2"
+                header="Order summary"
+                content={
+                  <>
+                    <div className="text-fs-40 font-normal leading-lh-04 text-dark-01">
+                      <div className="w-full text-fs-30 leading-lh-05">
+                        <div className="flex items-center justify-between mb-5">
+                          <p className="">Subtotal</p>
+                          <p className=" text-dark-02 font-bold">$119,32</p>
+                        </div>
+                        <div className="flex items-center justify-between mb-5">
+                          <p>Duties & Tax</p>
+                          <p className="text-dark-02 font-bold">$90</p>
+                        </div>
+                        <div className="flex items-center justify-between mb-5">
+                          <p>Delivery</p>
+                          <p className=" text-dark-02 font-bold">$10</p>
+                        </div>
+                        <div className="flex items-center justify-between mb-5">
+                          <p className="text-fs-40 text-dark-02 font-bold">
+                            Total
+                          </p>
+                          <p className=" text-fs-40 text-dark-02 font-bold">
+                            $219,32
+                          </p>
+                        </div>
+                      </div>
+                      <div className="flex items-center gap-5 py-5 text-dark-02 font-bold">
+                        <div className="w-[120px] h-[133px] bg-dark-01 shadow-lg"></div>
+                        <div className="flex flex-col justify-between">
+                          <h3>Liverpool F.C. 21/22 Home Kit Goalkeeper</h3>
+                          <p className="text-dark-01 font-normal">
+                            Football . Size L . QTY 1
+                          </p>
+                          <p>$59,66</p>
+                        </div>
+                      </div>
+                      <div className="flex items-center gap-5 py-5 text-dark-02 font-bold">
+                        <div className="w-[120px] h-[133px] bg-dark-01 shadow-lg"></div>
+                        <div className="flex flex-col justify-between">
+                          <h3>Liverpool F.C. 21/22 Home Kit Goalkeeper</h3>
+                          <p className="text-dark-01 font-normal">
+                            Football . Size L . QTY 1
+                          </p>
+                          <p>$59,66</p>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="flex gap-5 pb-12 self-start py-5">
+                      <button className="py-5 px-10 shadow-lg">Back</button>
+                      <PaystackButton
+                        {...componentProps}
+                        className="py-5 px-10 bg-dark-02 text-white"
+                      />
+                    </div>
+                  </>
+                }
+              />
+            </form>
           }
         />
       </main>
